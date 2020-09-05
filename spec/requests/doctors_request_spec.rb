@@ -54,7 +54,7 @@ RSpec.describe "Doctors", type: :request do
         it 'returns a doctor' do
             # Json is a custom helper to parse JSON responses
             expect(json).not_to be_empty
-            # expect(json.size).to eq(1)
+            expect(json['id']).to eq(doctor_id)
         end
 
         it 'returns status code 200' do
