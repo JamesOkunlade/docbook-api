@@ -29,6 +29,11 @@ Rails.application.routes.draw do
   resources :doctors, only: [:index, :create, :show, :update, :destroy]
   resources :specialties, only: [:index, :create, :update, :destroy]
   resources :appointments, only: [:create, :update, :destroy]
+
+  post 'auth/login', to: 'authentication#authenticate'
+  post 'signup', to: 'users#create'
+
+
   
 
 end

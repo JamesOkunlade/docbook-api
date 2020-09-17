@@ -9,10 +9,13 @@ RSpec.describe "Appointments", type: :request do
     let(:user_id) { user.id }
     let(:doctor_id) { doctor.id }
 
+    # authorize request
+    let(:headers) { valid_headers }
+
     # Test suite for GET /users/:id/appointments
     describe 'GET /users/:id/appointments' do
         # make HTTP get request before each example
-        before { get "/users/#{user_id}/appointments" }
+        before { get "/users/#{user_id}/appointments", params: {}, headers: headers }
 
         it 'returns appointments' do
             # Json is a custom helper to parse JSON responses
@@ -28,7 +31,7 @@ RSpec.describe "Appointments", type: :request do
     # Test suite for GET /doctors/:id/appointments
     describe 'GET /doctors/:id/appointments' do
         # make HTTP get request before each example
-        before { get "/doctors/#{doctor_id}/appointments" }
+        before { get "/doctors/#{doctor_id}/appointments", params: {}, headers: headers }
 
         it 'returns appointments' do
             # Json is a custom helper to parse JSON responses
@@ -47,7 +50,7 @@ RSpec.describe "Appointments", type: :request do
         let(:valid_attributes) {{ label: 'Meeting my demartologist', date: 'October 21, 2018 20:47', doctor_id: doctor.id, user_id: user.id }}
          
         context 'when the request is valid' do
-            before { post '/appointments', params: valid_attributes }
+            before { post '/appointments', params: valid_attributes, headers: headers }
 
             it 'creates an appointment' do
                 expect(json['label']).to eq('Meeting my demartologist')
@@ -72,7 +75,7 @@ RSpec.describe "Appointments", type: :request do
         let(:valid_attributes) {{ label: 'Meeting my optamologist' }}
 
         context 'when record exists' do
-            before { put "/appointments/#{appointment_id}", params: valid_attributes }
+            before { put "/appointments/#{appointment_id}", params: valid_attributes, headers: headers }
 
             it 'updates the record' do
                 expect(response.body).to be_empty
@@ -86,7 +89,7 @@ RSpec.describe "Appointments", type: :request do
 
     # Test suite for DELETE /appointments/:id
     describe 'DELETE /appointments/:id' do
-        before { delete "/appointments/#{appointment_id}" }
+        before { delete "/appointments/#{appointment_id}", params: {}, headers: headers }
 
         it 'returns status code 204' do
             expect(response).to have_http_status(204)

@@ -3,10 +3,13 @@ require 'rails_helper'
 RSpec.describe "Specialties", type: :request do
     let!(:specialties) { create_list(:specialty, 10) }
     let(:specialty_id) { specialties.first.id }
+    
+    # authorize request
+    let(:headers) { valid_headers }
 
     # Test suite for GET specialties
     describe 'GET /specialties' do
-        before { get '/specialties' }
+        before { get '/specialties', params: {}, headers: headers }
 
         it 'returns specialties' do
             # Json is a custom helper to parse JSON responses
@@ -24,7 +27,7 @@ RSpec.describe "Specialties", type: :request do
         let(:valid_attributes) {{ area_of_specialization: 'Dermatology' }}
 
         context 'when the request is valid' do
-            before { post '/specialties', params: valid_attributes }
+            before { post '/specialties', params: valid_attributes, headers: headers }
 
             it 'creates a doctor' do
                 expect(json['area_of_specialization']).to eq('Dermatology')
@@ -49,7 +52,7 @@ RSpec.describe "Specialties", type: :request do
         let(:valid_attributes) {{ area_of_specialization: 'Oncology' }}
 
         context 'when record exists' do
-            before { put "/specialties/#{specialty_id}", params: valid_attributes }
+            before { put "/specialties/#{specialty_id}", params: valid_attributes, headers: headers }
 
             it 'updates the record' do
                 expect(response.body).to be_empty
@@ -63,7 +66,7 @@ RSpec.describe "Specialties", type: :request do
 
     # Test suite for DELETE specialy 
     describe 'DELETE /specialties/:id' do
-        before { delete "/specialties/#{specialty_id}" }
+        before { delete "/specialties/#{specialty_id}", params: {}, headers: headers }
 
         it 'returns status code 204' do
             expect(response).to have_http_status(204)

@@ -9,7 +9,7 @@ class DoctorsController < ApplicationController
 
     # POST /doctors
     def create
-        @doctor = Doctor.create!(doctor_params)
+        @doctor = current_user.doctors.create!(doctor_params)
         json_response(@doctor, :created)
     end
 
