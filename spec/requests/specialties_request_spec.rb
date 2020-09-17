@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Specialties", type: :request do
+    let(:user) { create(:user) }
     let!(:specialties) { create_list(:specialty, 10) }
     let(:specialty_id) { specialties.first.id }
     
@@ -24,7 +25,9 @@ RSpec.describe "Specialties", type: :request do
 
     # Test suite for POST specialties
     describe 'POST /specialties' do
-        let(:valid_attributes) {{ area_of_specialization: 'Dermatology' }}
+        let(:valid_attributes) do 
+            { area_of_specialization: 'Dermatology' }.to_json
+        end
 
         context 'when the request is valid' do
             before { post '/specialties', params: valid_attributes, headers: headers }
@@ -39,7 +42,11 @@ RSpec.describe "Specialties", type: :request do
         end
 
         context 'when the request is invalid' do
-            before { post '/specialties', params: { area_of_specialization: nil} }
+            let(:invalid_attributes) do
+                { area_of_specialization: nil }.to_json
+            end
+
+            before { post '/specialties', params: invalid_attributes, headers: headers }
 
             it 'returns status code 422' do
                 expect(response).to have_http_status(422)
@@ -49,7 +56,7 @@ RSpec.describe "Specialties", type: :request do
 
     # Test suite for PUT specialty
     describe 'PUT /specialties/:id' do
-        let(:valid_attributes) {{ area_of_specialization: 'Oncology' }}
+        let(:valid_attributes) { { area_of_specialization: 'Oncology' }.to_json }
 
         context 'when record exists' do
             before { put "/specialties/#{specialty_id}", params: valid_attributes, headers: headers }

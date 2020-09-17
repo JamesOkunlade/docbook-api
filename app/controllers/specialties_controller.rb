@@ -4,12 +4,14 @@ class SpecialtiesController < ApplicationController
     # GET /specialties
     def index
         @specialties = Specialty.all
+        # @specialties = current_user.specialties
         json_response(@specialties)
     end
 
     # POST /specialties
     def create
         @specialty = Specialty.create!(specialty_params)
+        # @specialty = current_user.specialties.create!(specialty_params)
         json_response(@specialty, :created)
     end
 
