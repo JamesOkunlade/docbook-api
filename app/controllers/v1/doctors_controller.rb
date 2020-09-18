@@ -6,7 +6,7 @@ module V1
 
         # GET /doctors
         def index
-            @doctors = Doctor.all
+            @doctors = Doctor.all.paginate(page: params[:page], per_page: 10)
             json_response(@doctors)
         end
 

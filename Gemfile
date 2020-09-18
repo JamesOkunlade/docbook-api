@@ -24,6 +24,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # gem 'faker', '~> 2.13'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'will_paginate', '~> 3.1.0'
+
 
 
 

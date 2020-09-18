@@ -7,7 +7,7 @@ module V1
         # GET /appointments
         def index
             # @appointments = Appointment.all
-            @appointments = current_user.appointments.all
+            @appointments = current_user.appointments.all.paginate(page: params[:page], per_page: 5)
             json_response(@appointments)
         end
 
