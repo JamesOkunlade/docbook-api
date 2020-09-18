@@ -20,16 +20,20 @@ Rails.application.routes.draw do
   # post '/appointments', to: 'appointments#create'
   # put '/appointments/:id', to: 'appointments#update'
   # delete '/appointments/:id', to: 'appointments#destroy'
-  get '/users/:id/appointments', to: 'appointments#index'
-  get '/doctors/:id/appointments', to: 'appointments#index'
   
   
   
-  resources :users, only: [:index, :show, :update, :destroy]
-  resources :doctors, only: [:index, :create, :show, :update, :destroy]
-  resources :specialties, only: [:index, :create, :update, :destroy]
-  resources :appointments, only: [:create, :update, :destroy]
+  # namespace the controllers without affecting the URI
+  scope module: :v1, constraints: ApiVersion.new('v1', true) do
+    resources :doctors, only: [:index, :create, :show, :update, :destroy]
+    resources :specialties, only: [:index, :create, :update, :destroy]
+    resources :appointments, only: [:create, :update, :destroy]
+    get '/users/:id/appointments', to: 'appointments#index'
+    get '/doctors/:id/appointments', to: 'appointments#index'
+  end
 
+  resources :users, only: [:index, :show, :update, :destroy]
+  
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
 
