@@ -3,13 +3,14 @@ class AppointmentsController < ApplicationController
 
     # GET /appointments
     def index
-        @appointments = Appointment.all
+        # @appointments = Appointment.all
+        @appointments = current_user.appointments.all
         json_response(@appointments)
     end
 
     # POST /appointments
     def create
-        @appointment = Appointment.create!(appointment_params)
+        @appointment = current_user.appointments.create!(appointment_params)
         json_response(@appointment, :created)
     end
 
