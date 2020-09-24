@@ -123,7 +123,7 @@ The following routes are available for authorization:
 ## Live Version
 
 This is the link to the api documentation - 
-[Docbook-api documentation](https://www.getpostman.com/collections/b469f760a24ed25a9265)<br>
+[Docbook-api documentation](https://documenter.getpostman.com/view/10231991/TVKFybRX)<br>
 
 <!-- CONTACT -->
 
