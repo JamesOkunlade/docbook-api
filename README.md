@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a doctors listing and appointment booking API. Similar applications to what Docbook is are CureFit, Practo, and Nedmeds.
+This is a doctors listing and appointment booking API. Similar applications to what Docbook are CureFit, Practo, and Nedmeds.
 
 Specification summary:
 
@@ -123,11 +123,11 @@ The following routes are available for authorization:
 ## Live Version
 
 This is the link to the api documentation - 
-[Docbook-api documentation](https://link.com)<br>
+[Docbook-api documentation](https://www.getpostman.com/collections/b469f760a24ed25a9265)<br>
 
 <!-- CONTACT -->
 
-## Authors
+## Author
 
 James Okunlade
 

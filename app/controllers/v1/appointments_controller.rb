@@ -6,8 +6,19 @@ module V1
 
         # GET /appointments
         def index
-            # @appointments = Appointment.all
-            @appointments = current_user.appointments.all.paginate(page: params[:page], per_page: 5)
+            @appointments = Appointment.all
+            json_response(@appointments)
+        end
+
+        # GET /users/:id/appointments
+        def user_appointments
+            @appointments = Appointment.all.where('user_id = ?', current_user.id)
+            json_response(@appointments)
+        end
+        
+        # GET /doctors/:id/appointments
+        def doctor_appointments
+            @appointments = Appointment.all.where('doctor_id = ?', current_user.id)
             json_response(@appointments)
         end
 

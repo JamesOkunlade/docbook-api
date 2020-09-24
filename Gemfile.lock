@@ -150,6 +150,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rdoc (6.2.1)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -207,6 +208,7 @@ DEPENDENCIES
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.2)
+  rdoc (~> 6.2, >= 6.2.1)
   rspec-rails (~> 4.0, >= 4.0.1)
   shoulda-matchers (~> 4.3)
   spring

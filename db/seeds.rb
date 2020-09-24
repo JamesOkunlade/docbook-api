@@ -25,7 +25,7 @@ end
      )
 end
 
-user = User.create(name: "James Okunlade", email: "james.okunlade@gmail.com", password: "ladechael.love", password_confirmation: "ladechael.love")
+user = User.create(name: "James Okunlade", email: "james@gmail.com", password: "pass@123", password_confirmation: "pass@123")
 
 5.times do
     Appointment.create(label: Faker::Lorem.sentence,
