@@ -3,6 +3,8 @@
 module V1
     class AppointmentsController < ApplicationController
         before_action :set_appointment, only: [:show, :update, :destroy]
+        before_action :set_user, only: [:user_appointments]
+        before_action :set_doctor, only: [:doctor_appointments]
 
         # GET /appointments
         def index
@@ -12,13 +14,15 @@ module V1
 
         # GET /users/:id/appointments
         def user_appointments
-            @appointments = Appointment.all.where('user_id = ?', current_user.id)
+            # @appointments = Appointment.all.where('user_id = ?', current_user.id)
+            @appointments = Appointment.all.where('user_id = ?', @user.id)
             json_response(@appointments)
         end
         
         # GET /doctors/:id/appointments
         def doctor_appointments
-            @appointments = Appointment.all.where('doctor_id = ?', current_user.id)
+            # @appointments = Appointment.all.where('doctor_id = ?', current_user.id)
+            @appointments = Appointment.all.where('doctor_id = ?', @doctor.id)
             json_response(@appointments)
         end
 
@@ -50,6 +54,14 @@ module V1
 
         def set_appointment
             @appointment = Appointment.find(params[:id])
+        end
+
+        def set_user
+            @user = User.find(params[:id])
+        end
+        
+        def set_doctor
+            @doctor = Doctor.find(params[:id])
         end
     end
 end

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
 
   # uncomment the line below to enable authorization
   
-  before_action :authorize_request
+  # before_action :authorize_request
   attr_reader :current_user
 
   private
